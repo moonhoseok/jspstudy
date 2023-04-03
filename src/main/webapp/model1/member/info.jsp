@@ -21,7 +21,7 @@
 	<script>
 		alert("로그인하세요")
 		location.href="loginForm.jsp"
-	</script>
+	</script> <%-- 본인여부        로그인정보 admin --%>
 <%} else if(!id.equals(login)&&!login.equals("admin")){ // 개인 로그인 상태%>
 	<script>
 		alert("내정보만 조회 가능합니다.")

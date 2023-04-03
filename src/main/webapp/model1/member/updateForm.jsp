@@ -21,6 +21,7 @@
 	<script>
 		alert("로그인하세요")
 		location.href("loginForm.jsp");
+		
 	</script>
 		
 <%//2-2 : 로그인 상태 다른사람정보 수정시 오류
@@ -50,12 +51,16 @@
 		var op = "width=500, height=250, left=50, top=150";
 		open("pictureForm.jsp","",op);
 	}
+	function win_upload(){
+		var op = "width=500, height=150, left=50, top=150";
+		open("pictureForm.jsp","",op);
+	}
 </script>
 </head>
 <body>
 <form action="update.jsp" name="f" method="post" 
 onsubmit="return inputcheck(this)">
-<input type="hidden" name="picture" value="<%= mem.getPicture()%>">
+<input type="hidden" name="picture" value="<%=mem.getPicture()%>">
 <table><caption>회원정보수정</caption>
 <tr><td rowspan="4" valign="bottom">
 	<img src="picture/<%= mem.getPicture()%>"
