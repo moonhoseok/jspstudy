@@ -7,7 +7,7 @@
 <title>방명록 글쓰기 화면</title>
 <link rel="stylesheet" href="../../css/main.css" >
 <script type="text/javascript">
-   function inputcheck(f) {
+   function inputcheck(f1) {
        if(f.writer.value == '') {
 		   alert("방문자를 입력하세요");
 		   f.writer.focus();
@@ -29,7 +29,7 @@
 </head>
 <body>
 <form action="test1.jsp" method="post" 
-      onsubmit="return inputcheck(this)">
+      onsubmit="return inputcheck(this)" name="f1">
 <table><caption>방명록쓰기</caption>
 <tr><td>방문자</td><td><input type="text" name="writer"></td></tr>
 <tr><td>제목</td><td><input type="text" name="title"></td></tr>
@@ -38,13 +38,11 @@
 <tr><td colspan="2" align="center">
      <input type="submit" value="글쓰기"></td></tr>
 </table>
-<%-- 
-<form action="testlist.jsp" onsubmit="return inputcheck(this)">
+</form>
+<form action="testlist.jsp" name= "f2">
 	<input type="text" name="writer"><br>
-	<input type="submit" value="조회">
-	
+	<input type="submit" value="조회">	
 </form>
---%>
-</form>
+
 </body>
 </html>

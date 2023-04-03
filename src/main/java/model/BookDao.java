@@ -49,15 +49,15 @@ public class BookDao {
 		return null;
 		
 	}
-	public List<Book> list(){
+	public List<Book> list(String writer){
 		
 		Connection conn = DBConnection.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Book> list = new ArrayList<>();
 		try {
-			pstmt = conn.prepareStatement("select *from book ");
-		//	pstmt.setString(1, writer);
+			pstmt = conn.prepareStatement("select *from book where writer=?");
+			pstmt.setString(1, writer);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Book b = new Book();
