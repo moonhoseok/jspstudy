@@ -10,7 +10,8 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String writer = request.getParameter("writer");
-	List<Book> list = new BookDao().list(writer);
+	//List<Book> list = new BookDao().list(writer);
+	List<Book> list = new BookDao().list();
 %> 
 <!DOCTYPE html> 
 <html>

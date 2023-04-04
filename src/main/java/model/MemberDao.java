@@ -111,4 +111,68 @@ public class MemberDao {
 		}
 		return null;
 	}
+	//http://localhost:8080/jspstudy1/model1/member/delete.jsp?id=test2&pass=1111
+	public boolean delete(String id) {
+		Connection conn = DBConnection.getConnection();
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement("delete from member where id=?");
+			pstmt.setString(1,id);
+			return pstmt.executeUpdate() >0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBConnection.close(conn, pstmt, null);
+		}
+		return false;
+	}
+	public String idSearch(String email, String tel) {
+		Connection conn = DBConnection.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		try {
+			pstmt = conn.prepareStatement
+					("select id from member where email=? and tel=?");
+			pstmt.setString(1, email);
+			pstmt.setString(2, tel);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				Member mem = new Member();
+				mem.setId(rs.getString("id"));
+				return mem.getId();
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(conn, pstmt, null);
+		}
+		return null;
+	}
+	public String pwSearch(String id, String email, String tel) {
+		Connection conn = DBConnection.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		try {
+			pstmt = conn.prepareStatement
+					("select pass from member where id=?and email=? and tel=?");
+			pstmt.setString(1, id);
+			pstmt.setString(2, email);
+			pstmt.setString(3, tel);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				Member mem = new Member();
+				mem.setPass(rs.getString("pass"));
+				return mem.getPass();
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(conn, pstmt, null);
+		}
+		return null;
+	}
 }

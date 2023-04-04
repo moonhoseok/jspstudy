@@ -23,6 +23,10 @@
 	</table>
 </form>
 <script type="text/javascript">
+	function win_open(page){
+		let op = "width=350, height=350, left=50, top=150"
+		open(page+".jsp","",op)
+	}
 	function input_check(f){
 		if(f.id.value.trim() ==""){
 			alert("아이디를 입력하세요");

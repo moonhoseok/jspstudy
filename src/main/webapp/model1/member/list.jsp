@@ -47,7 +47,9 @@
 <td><%=m.getGender()==1?"남":"여"%></td>
 <td><%=m.getTel() %></td>
 <td><a href ="updateForm.jsp?id=<%=m.getId() %>">수정</a>
-<a href ="deleteForm.jsp?id=<%=m.getId() %>">강제 탈퇴</a></td> 
+	<%if(!m.getId().equals("admin")){ %>
+	<a href ="deleteForm.jsp?id=<%=m.getId() %>">강제 탈퇴</a></td>
+	<%} %> 
 <%} %>
 </table>
 </body>

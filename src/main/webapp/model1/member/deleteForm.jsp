@@ -13,7 +13,7 @@
 	String login = (String)session.getAttribute("login");
 	if(login==null){%>
 		<script>
-			alert("로그인한세요")
+			alert("로그인하세요")
 			location.href="loginForm.jsp"
 		</script>
 <% }else if(!id.equals(login)&&!login.equals("admin")) {%>
@@ -28,6 +28,16 @@
 <meta charset="UTF-8">
 <title>회원탈퇴</title>
 <link rel="stylesheet" href="../../css/main.css">
+<script type="text/javascript">
+	function inputcheck(f){
+		if(f.pass.value.trim()==""){
+			alert("비밀번호를 입력하세요")
+			f.pass.focus();
+			return false;
+		}
+	//	return true;
+	}
+</script>
 </head>
 <body>
 <form action="delete.jsp" method="post" onsubmit="return inputcheck(this)">

@@ -49,7 +49,9 @@
 <tr><th>이메일</th><td><%=mem.getEmail()%></td></tr>
 <tr><td colspan="2">
 <a href="updateForm.jsp?id=<%=mem.getId()%>">수정</a>
-<a href="deleteForm.jsp?id=<%=mem.getId()%>">탈퇴</a>
+	<% if(!mem.getId().equals("admin")){ %>
+		<a href="deleteForm.jsp?id=<%=mem.getId()%>">탈퇴</a>
+	<%} %>
 </td></tr>
 </table>
 </body>
