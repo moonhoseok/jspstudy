@@ -162,9 +162,9 @@ public class MemberDao {
 			pstmt.setString(3, tel);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				Member mem = new Member();
-				mem.setPass(rs.getString("pass"));
-				return mem.getPass();
+				//Member mem = new Member();
+				//mem.setPass(rs.getString("pass"));
+				return rs.getString("pass");//mem.getPass();
 			}
 			
 			
@@ -174,5 +174,25 @@ public class MemberDao {
 			DBConnection.close(conn, pstmt, null);
 		}
 		return null;
+	}
+	public boolean updatePass(String id, String pass) {
+		// pass : 변경 될 비밀번호
+		// id : 로그인된 아이디값
+		Connection conn = DBConnection.getConnection();
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement
+					("update member set pass=? where id =?");
+			pstmt.setString(1, pass);
+			pstmt.setString(2, id);
+			
+			return pstmt.executeUpdate() >0; //true : 변경된 레코드 존재
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBConnection.close(conn, pstmt, null);
+		}
+		return false;
 	}
 }

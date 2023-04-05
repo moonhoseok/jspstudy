@@ -8,7 +8,7 @@
     <%--/jspstudy1/src/main/webapp/jdbc/jdbcEx2.jsp --%>
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
 <meta charset="UTF-8">
 <title>student테이블 읽어 화면에 출력하기</title>
 <link rel="stylesheet" href="../css/main.css">

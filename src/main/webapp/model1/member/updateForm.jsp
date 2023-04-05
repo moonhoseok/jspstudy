@@ -49,7 +49,7 @@
 	}
 	function win_passchg(){
 		var op = "width=500, height=250, left=50, top=150";
-		open("pictureForm.jsp","",op);
+		open("passwordForm.jsp","",op);
 	}
 	function win_upload(){
 		var op = "width=500, height=150, left=50, top=150";
