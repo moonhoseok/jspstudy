@@ -17,20 +17,21 @@
 	File f = new File(path);
 	if(!f.exists()) f.mkdirs();
 	MultipartRequest multi = new MultipartRequest
-			(request,path,10*1024*1024,"utf-8");
+			(request,path,10*1024*1024,"UTF-8");
 	Board board = new Board();
-	board.setWrite(multi.getParameter("writer"));
+	board.setWriter(multi.getParameter("writer"));
 	board.setPass(multi.getParameter("pass"));
 	board.setTitle(multi.getParameter("title"));
 	board.setContent(multi.getParameter("content"));
 	board.setFile1(multi.getFilesystemName("file1"));
-	String boardid = multi.getParameter("boardid");
+	String boardid = (String)session.getAttribute("boardid");
 	if(boardid == null) boardid = "1";
 	board.setBoardid(boardid);
 	BoardDao dao = new BoardDao();
+	// num : board테이블의 num컬럼의 값 중 최대값
 	int num = dao.maxnum(); //board테이블에 등록된 최대 num값
-	board.setNum(++num);
-	board.setGrp(num);
+	board.setNum(++num);//최대값+1
+	board.setGrp(num);	//grp컬럼 : 최초게시물의 번호
 	if(dao.insert(board)){ // board테이블에 게시물 등록
 		response.sendRedirect("list.jsp");
 	}else{%>

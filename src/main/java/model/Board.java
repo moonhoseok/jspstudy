@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Board {
 	private int num;
-	private String write;
+	private String writer;
 	private String pass;
 	private String title;
 	private String content;
@@ -22,11 +22,11 @@ public class Board {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getWrite() {
-		return write;
+	public String getWriter() {
+		return writer;
 	}
-	public void setWrite(String write) {
-		this.write = write;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 	public String getPass() {
 		return pass;
@@ -90,7 +90,7 @@ public class Board {
 	}
 	@Override
 	public String toString() {
-		return "Board [num=" + num + ", write=" + write + ", pass=" + pass + ", title=" + title + ", content=" + content
+		return "Board [num=" + num + ", writer=" + writer + ", pass=" + pass + ", title=" + title + ", content=" + content
 				+ ", file1=" + file1 + ", boardid=" + boardid + ", regdate=" + regdate + ", readcnt=" + readcnt
 				+ ", grp=" + grp + ", grplevel=" + grplevel + ", grpstep=" + grpstep + "]";
 	}
