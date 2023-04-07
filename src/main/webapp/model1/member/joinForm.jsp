@@ -30,7 +30,11 @@
 		var op = "width=500, height=500, left=50, top=50";
 		open("pictureForm.jsp","",op);
 	}
-	
+	function win_open(page){
+		let op = "width=350, height=350, left=50, top=150"
+		open(page+".jsp","",op)
+	}
+
 </script>
 </head>
 <body>
@@ -39,8 +43,10 @@
 	<input type="hidden" name="picture" value="">
 	<table><tr><td rowspan="4" valign="bottom">
 		<img src="" width="100" height="120" id="pic"><br>
-		<font size="1"><a href="javascript:win_upload()">사진등록</a></font>
-		</td><th>아이디</th><td><input type="text" name="id"></td></tr>
+		<font size="1"><a href="javascript:win_upload()">사진등록</a></font></td>
+		<th>아이디</th><td><input type="text" name="id" ><br>
+		<input type="button" value="중복확인" onclick="win_open('idchk')">
+		</td></tr>
 		<tr><th>비밀번호</th><td><input type="text" name="pass"></td></tr>
 		<tr><th>이름</th><td><input type="text" name="name"></td></tr>
 		<tr><th>성별</th>

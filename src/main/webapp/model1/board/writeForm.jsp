@@ -38,21 +38,22 @@
 </script>
 </head>
 <body>
-<%
+<%	
+	String boardid = (String)session.getAttribute("boardid");
+	if(boardid==null) boardid = "1";
 	String login = (String)session.getAttribute("login");
 	if(login == null){%>
 		<script>
 		alert("로그인하세요.")
 		location.href="../member/loginForm.jsp"
 		</script>
-	<% }else if(login != null && !login.equals("admin")){%>
+	<% }else if(boardid.equals("1") && !login.equals("admin")){%>
 		<script>
 		alert("관리자만가능합니당")
 		location.href="../member/loginForm.jsp"
 		</script>
 		
 	<%} %>
-%>
 <form action="write.jsp" method="post"
 		enctype="multipart/form-data" name="f">
 <table><caption>게시판 글쓰기</caption>

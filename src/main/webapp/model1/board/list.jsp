@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@page import="java.io.File"%>
@@ -80,6 +81,11 @@
  			boardName = "QnA"; break; 
  	}
  	int boardnum = boardcount - (pageNum - 1) * limit; 
+ 	
+ 	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+    String today = sf.format(new Date()); //"2023-04-07"
+    SimpleDateFormat todayf = new SimpleDateFormat("HH:mm:ss");
+    SimpleDateFormat otherf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
  %>
 
 <!DOCTYPE html>
@@ -110,29 +116,25 @@
 <tr><td><%=boardnum-- %></td>
 	<td style="text-align: left;">
 	<%-- 첨부파일 @로 표시하기 --%>
-	<% if(b.getFile1() != null){%>
+	<% if(b.getFile1() != null && !b.getFile1().trim().equals("")){%>
 	<a href="file/<%=b.getFile1()%>">@</a>
 	<%}else{%>&nbsp;&nbsp;&nbsp;<%}%>
-		<a href="info.jsp?num=<%=b.getNum()%>"><%=b.getTitle()%></a></td>
+		<%if(b.getGrplevel() >0){ %>
+			<%for(int i =0;i<b.getGrplevel();i++){ %>
+				&nbsp;
+			<%} %>ㄴ
+		<%}%>
+		<a href="info.jsp?num=<%=b.getNum()%>">
+		<%=b.getTitle()%>
+		</a></td>
 	<td><%=b.getWriter() %></td>
 	<td>
 	<%--SimpleDateFormat() --%>
-	<% Date date = new Date();
-	if(b.getRegdate().getYear()==date.getYear() 
-	&& b.getRegdate().getMonth()==date.getMonth()
-	&& b.getRegdate().getDate()== date.getDate() ){ %>
-		
-		<%=b.getRegdate().getHours() %>:
-		<%=b.getRegdate().getMinutes() %>:
-		<%=b.getRegdate().getSeconds() %>
-	<%}else{ %>
-		<%=b.getRegdate().getYear() %>-
-		<%=b.getRegdate().getMonth() %>-
-		<%=b.getRegdate().getDate() %>&nbsp;
-		<%=b.getRegdate().getHours() %>:
-		<%=b.getRegdate().getMinutes() %>
-		
-	<%} %>
+	<% if (today.equals(sf.format(b.getRegdate()))) { //당일등록게시물%>
+	 <%=todayf.format(b.getRegdate()) %>
+ <% } else {  //당일 등록게시물이 아님%>
+    <%=otherf.format(b.getRegdate()) %>
+   <% } %>
 	</td>
 	<td><%=b.getReadcnt() %></td></tr>
 <%} //for구문 끝%>
