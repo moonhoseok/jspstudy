@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%--/jspstudy1/src/main/webapp/model1/member/joinForm.jsp --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,8 +32,14 @@
 		open("pictureForm.jsp","",op);
 	}
 	function win_open(page){
+		let id= f.id.value;
+		if(id==""){
+			alert("아이디를 적어")
+			f.id.focus();
+		}else {
 		let op = "width=350, height=350, left=50, top=150"
-		open(page+".jsp","",op)
+		open(page+".jsp?id="+id,"",op)
+		}
 	}
 
 </script>
