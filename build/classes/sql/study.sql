@@ -38,3 +38,20 @@ create table board(
 	
 );
 select *from board
+
+create table comment(
+	num int references board(num),
+	seq int,
+	writer varchar(30),
+	content varchar(2000),
+	regdate datetime,
+	primary key (num,seq)
+)
+select * from comment
+
+select * from student
+
+
+
+
+
